@@ -1,6 +1,8 @@
 #ifndef LOGGER_HPP_
 #define LOGGER_HPP_
 
+#define LOG_FOLDER "/var/log/matt_daemon/"
+
 #include <string>
 
 #include "logger.hpp"
