@@ -20,6 +20,9 @@ class Logger {
 		void	debug(std::string msg);
 		void	warning(std::string msg);
 		void	error(std::string msg);
+
+	private:
+		void	__format(std::string msg, std::string level);
 };
 
 #endif

@@ -75,30 +75,30 @@ daemonize() {
 	 *		http://www.netzmafia.de/skripten/unix/linux-daemon-howto.html
 	*/
 
-	pid_t pid = fork();
-	if (pid < 0) {
-		std::cerr << "fork failed" << std::endl;
-		release_lock(false);
-		exit(EXIT_FAILURE);
-	} else if (pid > 0) {
-		exit(EXIT_SUCCESS);
-	}
+	// pid_t pid = fork();
+	// if (pid < 0) {
+	// 	std::cerr << "fork failed" << std::endl;
+	// 	release_lock(false);
+	// 	exit(EXIT_FAILURE);
+	// } else if (pid > 0) {
+	// 	exit(EXIT_SUCCESS);
+	// }
 
-	umask(0);
+	// umask(0);
 
-	/* Create a new S(ession)ID for the child process, prevent orphan */
-	pid_t sid = setsid();
-	if (sid < 0) {
-		std::cerr << "setsid failed" << std::endl;
-		release_lock(false);
-		exit(EXIT_FAILURE);
-	}
+	// /* Create a new S(ession)ID for the child process, prevent orphan */
+	// pid_t sid = setsid();
+	// if (sid < 0) {
+	// 	std::cerr << "setsid failed" << std::endl;
+	// 	release_lock(false);
+	// 	exit(EXIT_FAILURE);
+	// }
 
-	chdir("/");
+	// chdir("/");
 
-	close(STDIN_FILENO);
-	close(STDOUT_FILENO);
-	close(STDERR_FILENO);
+	// close(STDIN_FILENO);
+	// close(STDOUT_FILENO);
+	// close(STDERR_FILENO);
 
 	Daemon daemon;
 
@@ -113,7 +113,7 @@ daemonize() {
 	signal(SIGFPE, sig_handler);
 	signal(SIGKILL, sig_handler);
 	signal(SIGALRM, sig_handler);
-	signal(SIGTERM, sig_handler);
 
+	daemon.create_server();
 	daemon.run();
 }
