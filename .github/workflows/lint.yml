@@ -1,0 +1,16 @@
+name: cpplint
+
+on: [ push, pull_request ]
+
+jobs:
+  cpplint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v2
+      - name: install python3
+        uses: actions/setup-python@v2
+      - name: install dependencies
+        run: pip install cpplint
+      - name: run lint
+        run: make lint
