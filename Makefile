@@ -32,6 +32,8 @@ clean	:
 	@	printf "Deleting $(OBJS_DIR)\n"
 	@	rm -rf $(OBJS_DIR)
 
+	-docker image rm matt-daemon --force
+
 .PHONY	: fclean
 fclean	: clean
 	@	printf "Deleting $(NAME) binary\n"
@@ -39,6 +41,14 @@ fclean	: clean
 
 .PHONY	: re
 re		: fclean all
+
+.PHONY	: docker
+docker	:
+	@	printf "Building Docker image\n"
+	docker build -t matt-daemon .
+
+	@	printf "Running Docker image\n"
+	docker run --rm -it -v $(shell pwd):/usr/matt-daemon -p 4242:4242 matt-daemon
 
 .PHONY	: lint
 lint	:
