@@ -42,4 +42,4 @@ re		: fclean all
 
 .PHONY	: lint
 lint	:
-	@	cpplint --recursive --root=src --filter=-whitespace/tab,-legal/copyright $(SRCS_DIR)
+	@	cpplint --recursive --root=src --filter=-whitespace/tab,-legal/copyright,-build/include_subdir $(SRCS_DIR)
