@@ -8,9 +8,9 @@
 int
 main() {
 	if (geteuid() != 0) {
-		std::cerr << "you must be root to run this program" << std::endl;
+		std::cerr << "You must be root to run this program." << std::endl;
 		return 1;
 	}
-	
+
 	return setup_lock();
 }

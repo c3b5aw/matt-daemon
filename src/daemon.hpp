@@ -5,12 +5,13 @@
 
 #include <sys/epoll.h>
 
-#include "logger.hpp"
+#include <string>
 
-class Daemon
-{
+#include "tintin_reporter.hpp"
+
+class Daemon {
 	public:
-		Logger logger;
+		Tintin_reporter *logger;
 
 	private:
 		bool	__alive;
@@ -22,11 +23,14 @@ class Daemon
 		struct epoll_event __events[3];
 
 	public:
-		Daemon();
+		explicit Daemon(Tintin_reporter *logger);
 		~Daemon();
 
 		void	run();
 		void	create_server();
+
+	private:
+		void	__action(std::string packet);
 };
 
-#endif
+#endif  // DAEMON_HPP_

@@ -1,21 +1,21 @@
-#ifndef LOGGER_HPP_
-#define LOGGER_HPP_
+#ifndef TINTIN_REPORTER_HPP_
+#define TINTIN_REPORTER_HPP_
 
 #define LOG_FOLDER "/var/log/matt_daemon/"
 
 #include <string>
 
-#include "logger.hpp"
+#include "tintin_reporter.hpp"
 
-class Logger {
+class Tintin_reporter {
 	private:
 		std::string	__name;
 
 	public:
-		Logger();
-		Logger(std::string name);
+		Tintin_reporter();
+		explicit Tintin_reporter(std::string name);
 
-		~Logger();
+		~Tintin_reporter();
 
 		void	log(std::string msg);
 		void	info(std::string msg);
@@ -25,6 +25,8 @@ class Logger {
 
 	private:
 		void	__format(std::string msg, std::string level);
+		void	__register_entry(std::string entry, std::string path);
+		int		__mkdirs(std::string path);
 };
 
-#endif
+#endif  // TINTIN_REPORTER_HPP_
