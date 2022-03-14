@@ -1,10 +1,10 @@
 NAME	:= Matt_daemon
 CC		:= clang++
 
-CFLAGS	:= -Wall -Wextra -Werror -std=c++11 -pedantic
+CFLAGS	:= -Wall -Wextra -Werror -std=c++11 -pedantic -g
 DFLAGS	= -MMD -MF $(@:.o=.d)
 
-FILES	=	daemon.cpp logger.cpp main.cpp utils.cpp
+FILES	=	daemon.cpp main.cpp tintin_reporter.cpp utils.cpp
 
 OBJS_DIR := ./obj/
 SRCS_DIR := ./src/
@@ -42,4 +42,4 @@ re		: fclean all
 
 .PHONY	: lint
 lint	:
-	@	cpplint --recursive --root=src --filter=-whitespace/tab $(SRCS_DIR)
+	@	cpplint --recursive --root=src --filter=-whitespace/tab,-legal/copyright $(SRCS_DIR)
