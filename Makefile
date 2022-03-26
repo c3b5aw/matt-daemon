@@ -48,7 +48,7 @@ docker	:
 	docker build -t matt-daemon .
 
 	@	printf "Running Docker image\n"
-	docker run --rm -it -v $(shell pwd):/usr/matt-daemon -p 4242:4242 matt-daemon
+	docker run --rm -it matt-daemon
 
 .PHONY	: lint
 lint	:
