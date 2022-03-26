@@ -148,10 +148,14 @@ Daemon::run() {
 void
 Daemon::__action(std::string packet) {
 	if (packet == "quit") {
-		logger->info("Request quit.");
-		__alive = false;
-		return;
+		return stop();
 	}
 
 	logger->log("User input: " + packet);
+}
+
+void
+Daemon::stop() {
+    logger->info("Request quit.");
+    __alive = false;
 }

@@ -11,7 +11,7 @@
 #include "utils.hpp"
 #include "daemon.hpp"
 
-Tintin_reporter *logger_singleton = nullptr;
+Daemon *daemon_singleton = nullptr;
 
 int
 open_lock() {
@@ -26,7 +26,6 @@ open_lock() {
 int
 setup_lock() {
 	Tintin_reporter logger("Matt_daemon");
-	logger_singleton = &logger;
 
 	int fd = open_lock();
 	if (fd == -1)
@@ -66,6 +65,8 @@ release_lock(int lock_fd) {
 void
 daemonize(Tintin_reporter *logger, int lock_fd) {
 	Daemon daemon(logger);
+
+    daemon_singleton = &daemon;
 	daemon.create_server();
 
 	/*
@@ -123,7 +124,7 @@ daemonize(Tintin_reporter *logger, int lock_fd) {
 
 void
 sig_handler(int signum) {
-	if (logger_singleton != NULL) {
+	if (daemon_singleton != NULL) {
 		std::string signal_name = "";
 		switch (signum) {
 			case SIGHUP:
@@ -154,6 +155,7 @@ sig_handler(int signum) {
 				signal_name = "UNKNOWN";
 				break;
 		}
-		logger_singleton->info("[SIGNAL] " + signal_name);
+		daemon_singleton->logger->info("[SIGNAL] " + signal_name);
+        daemon_singleton->stop();
 	}
 }

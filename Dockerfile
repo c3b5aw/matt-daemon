@@ -1,7 +1,7 @@
 FROM ubuntu:latest
 
 RUN apt-get update
-RUN apt-get install build-essential clang netcat -y
+RUN apt-get install build-essential clang netcat net-tools -y
 
 WORKDIR /usr/matt_daemon
 

@@ -28,8 +28,13 @@ class Daemon {
 
 		void	run();
 		void	create_server();
+		void	stop();
 
 	private:
+		Daemon();
+		Daemon(const Daemon&);
+		Daemon &operator=(const Daemon&);
+
 		void	__action(std::string packet);
 };
 

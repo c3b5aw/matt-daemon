@@ -24,6 +24,9 @@ class Tintin_reporter {
 		void	error(std::string msg);
 
 	private:
+		Tintin_reporter(const Tintin_reporter&);
+        Tintin_reporter &operator=(const Tintin_reporter&);
+
 		void	__format(std::string msg, std::string level);
 		void	__register_entry(std::string entry, std::string path);
 		int		__mkdirs(std::string path);
