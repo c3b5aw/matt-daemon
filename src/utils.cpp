@@ -110,7 +110,12 @@ daemonize(Tintin_reporter *logger, int lock_fd) {
 	signal(SIGHUP, sig_handler);
 	signal(SIGINT,  sig_handler);
 	signal(SIGQUIT, sig_handler);
+    signal(SIGILL, sig_handler);
+    signal(SIGTRAP, sig_handler);
+    signal(SIGABRT, sig_handler);
+    signal(SIGBUS, sig_handler);
 	signal(SIGFPE, sig_handler);
+    signal(SIGKILL, sig_handler);
 	signal(SIGALRM, sig_handler);
 	signal(SIGTERM, sig_handler);
 	signal(SIGUSR1, sig_handler);
@@ -136,9 +141,24 @@ sig_handler(int signum) {
 			case SIGQUIT:
 				signal_name = "SIGQUIT";
 				break;
+            case SIGILL:
+                signal_name = "SIGILL";
+                break;
+            case SIGTRAP:
+                signal_name = "SIGTRAP";
+                break;
+            case SIGABRT:
+                signal_name = "SIGABRT";
+                break;
+            case SIGBUS:
+                signal_name = "SIGBUS";
+                break;
 			case SIGFPE:
 				signal_name = "SIGFPE";
 				break;
+            case SIGKILL:
+                signal_name = "SIGKILL";
+                break;
 			case SIGALRM:
 				signal_name = "SIGALRM";
 				break;
