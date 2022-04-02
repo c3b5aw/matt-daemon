@@ -4,7 +4,7 @@
 
 Code a daemon
 
-**Note:** ../100
+**Note:** 125/100
 
 [![build](https://github.com/c3b5aw/matt-daemon/actions/workflows/build.yml/badge.svg)](https://github.com/c3b5aw/matt-daemon/actions/workflows/build.yml)
 [![cpplint](https://github.com/c3b5aw/matt-daemon/actions/workflows/lint.yml/badge.svg)](https://github.com/c3b5aw/matt-daemon/actions/workflows/lint.yml)
